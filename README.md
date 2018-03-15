@@ -27,3 +27,6 @@ the acution.
 ## TODO-LISTS
 - realtime product list display slideshow in certain time interval
 - countdown timer for last bidder
+
+## DEMO
+https://cryptic-island-75395.herokuapp.com/
