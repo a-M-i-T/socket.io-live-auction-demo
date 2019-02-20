@@ -6,9 +6,7 @@ A simple demo for socket.io
 ## How to use
 
 ```
-$ cd socket.io
-$ npm install
-$ cd live_auction
+$ cd [path to your project folder]
 $ npm install
 $ npm start or node index
 ```
@@ -27,6 +25,14 @@ the acution.
 ## TODO-LISTS
 - realtime product list display slideshow in certain time interval
 - countdown timer for last bidder
+
+## NOTE
+- This repo is for learning purpose only.
+- This repo will be no longer maintained and will remain in development phase.
+- A new repo link will be provided later.
+
+## Any feedback and queries will be appreciated.
+## Updated version of auction app will be provided sooner or later.
 
 ## DEMO
 https://cryptic-island-75395.herokuapp.com/
