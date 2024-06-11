@@ -1,4 +1,4 @@
-import { Timer } from './lib/Timer.js';
+import { Timer } from './timer.js';
 
   
   (function () {
