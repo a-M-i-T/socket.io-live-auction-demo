@@ -1,4 +1,4 @@
-(function (exports) {
+;(function (exports) {
   function Timer() {
     this.endTime = 0;
     this.timeLeft = 0;
