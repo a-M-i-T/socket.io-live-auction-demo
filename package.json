@@ -15,7 +15,7 @@
     "netlify-cli": "^12.7.2",
     "netlify-lambda": "^2.0.15",
     "serverless-http": "^2.7.0",
-    "socket.io": "^1.0.6"
+    "socket.io": "^2.5.0"
   },
   "scripts": {
     "build": "netlify deploy --prod"
