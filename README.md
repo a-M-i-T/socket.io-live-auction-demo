@@ -1,4 +1,5 @@
 # socket.io-live-auction-demo
+
 demo live auction built with node.js
 
 A simple demo for socket.io
@@ -36,6 +37,3 @@ the acution.
 
 ## DEMO
 https://cryptic-island-75395.herokuapp.com/
-
-## UPDATED FILES ARE NOW AVAILABLE
-https://aryatechblog.com/download/live-auction/

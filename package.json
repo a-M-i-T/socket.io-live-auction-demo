@@ -7,14 +7,17 @@
     "type": "git",
     "url": "https://github.com/a-M-i-T/socket.io-live-auction-demo.git"
   },
-  "author": "Amit Arya <aryarithm@gmail.com> (https://remote.com/amit-arya)",
+  "author": "Amit Arya <amit@miracleinterface.com> (http://miracleinterface.com/profile/cms/amit)",
   "private": true,
   "license": "BSD",
   "dependencies": {
-    "express": "4.19.2",
+    "express": "^4.17.1",
+    "netlify-cli": "^12.7.2",
+    "netlify-lambda": "^2.0.15",
+    "serverless-http": "^2.7.0",
     "socket.io": "^1.0.6"
   },
   "scripts": {
-    "start": "node index.js"
+    "build": "netlify deploy --prod"
   }
 }

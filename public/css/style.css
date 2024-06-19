@@ -1,0 +1,295 @@
+* {
+	box-sizing: border-box;
+}
+html {
+	font-weight: 300;
+	-webkit-font-smoothing: antialiased;
+}
+html, body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+body {
+	background: #ffffff;
+	font-family: "Calibri", sans-serif;
+}
+ul, li, ol {
+	list-style: none;
+	word-wrap: break-word;
+}
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+th, td {
+	text-align: left;
+	padding: 4px;
+	vertical-align: top;
+}
+
+/* Pages */
+.pages {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+}
+.page {
+	height: 100%;
+	position: absolute;
+	width: 100%;
+}
+
+/* Login Page */
+.login.page {
+	background: url(../images/sale-at-auction.jpg) no-repeat center;
+	background-size: cover;
+}
+.login.page:after {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0,0,0,0.5);
+	content: "";
+}
+.login.page .form {
+	height: 100px;
+	margin-top: -100px;
+	position: absolute;
+	text-align: center;
+	top: 50%;
+	width: 100%;
+	z-index: 2;
+}
+.login.page .form .usernameInput {
+	background-color: transparent;
+	border: none;
+	border-bottom: 2px solid #fff;
+	outline: none;
+	padding: 5px 5px 10px;
+	text-align: center;
+	width: 400px;
+}
+.login.page .title {
+	position: absolute;
+	font-size: 90%;
+	width: 100%;
+	transition: all 350ms ease;
+	top: 0;
+	color: rgba(255,255,255,0.5);
+}
+
+.login.page .activate .title {
+	top: -70px;
+	font-size: 150%;
+	color: rgba(255,255,255,1);
+}
+.login.page .usernameInput {
+	font-size: 200%;
+}
+.login.page .usernameInput {
+	color: #fff;
+	font-weight: 100;
+	text-shadow: 0 0 10px #000;
+}
+
+/* Chat page */
+div.chat.page {
+	display: none;
+	padding: 70px 0 0 0;
+}
+
+/* Font */
+.messages {
+	font-size: 150%;
+}
+.inputMessage {
+	font-size: 100%;
+}
+.log {
+	color: gray;
+	font-size: 70%;
+	margin: 5px;
+	text-align: center;
+}
+
+/* Messages */
+.chatArea {
+	height: 100%;
+	padding: 0px 0 105px 0px;
+}
+/*.messages {
+	height: 120px;
+	margin: 0;
+	width: 100%;
+	float: left;
+	padding-left: 0;
+	background: #f7f7f7;
+}*/
+.messages {
+    height: 120px;
+    margin-left: 50px;
+    width: 100%;
+    float: left;
+    padding-left: 0;
+    background: #f7f7f7;
+}
+
+.messages li {
+	padding: 5px 10px;
+	width: 100%;
+	float: left;
+}
+.message.typing .messageBody {
+	color: gray;
+}
+.username {
+	font-weight: 700;
+	overflow: hidden;
+	padding-right: 15px;
+	text-align: right;
+}
+
+.btns {
+	margin: auto;
+	width: 50%;
+	background: #f7f7f7;
+	box-shadow: 0 0 15px #a0a0a0;
+}
+.timer {
+	text-align: center;
+	position: fixed;
+	top: 0;
+	left: 0;
+	padding: 5px 0;
+	width: 100%;
+}
+li.chat {
+	position: relative;
+}
+#buttons {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	text-align: center;
+}
+#buttons p {
+	display: inline-block;
+}
+#buttons p + p {
+	margin-left: 20px;
+}
+#buttons p span {
+	display: block;
+	overflow: hidden;
+	color: red;
+	font-size: 20px;
+	font-weight: bold;
+	margin-bottom: 5px;
+}
+#buttons p button {
+	clear: both;
+	padding: 10px;
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#fcfff4+0,e9e9ce+100;Wax+3D+%232 */
+	background: #fcfff4; /* Old browsers */
+	background: -moz-linear-gradient(top, #fcfff4 0%, #e9e9ce 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top, #fcfff4 0%,#e9e9ce 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom, #fcfff4 0%,#e9e9ce 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fcfff4', endColorstr='#e9e9ce',GradientType=0 ); /* IE6-9 */
+	color: #a0a0a0;
+	border: 0;
+	min-width: 75px;
+	border-radius: 4px;
+	border: 1px solid #e9e9ce;
+	font-size: 16px;
+	font-weight: bold;
+}
+div.itemImg {
+	width: 100%;
+	text-align: center;
+	height: 200px;
+	float: left;
+	padding: 10px;
+}
+div.itemDesc {
+	height: 100px;
+	overflow-y: scroll;
+	z-index: 1;
+	float: left;
+	width: 100%;
+	text-align: center;
+	padding-right: 25px;
+	/*overflow: hidden;*/
+}
+.current-bidding-price {
+	float: left;
+	width: 100%;
+	text-align: center;
+	margin-top: 30px;
+}
+.scroll-bar {
+	width: 5px;
+	z-index: 25;
+}
+.thumb {
+	background: rgba(0, 0, 0, 1);
+}
+.col {
+	width: 50%;
+	float: left;
+	height: 100%;
+}
+/*.all-bidders-log {
+	width: 100%;
+    float: left;
+    height: auto;
+}*/
+.all-bid-logs {
+	height: 300px;
+	margin: 0;
+	overflow-y: scroll;
+	padding: 10px 20px 10px 20px;
+	font-size:150%;
+}
+.all-bid-logs li.message {
+	width: 80%;
+	float: right;
+	height: auto;
+	font-size: 16px;
+	padding: 5px;
+	/*font-weight: bold;*/
+}
+.logs {
+	height: 200px;
+	margin: 0;
+	overflow-y: scroll;
+	padding: 10px 20px 10px 20px;
+	font-size:150%;
+}
+
+.logs li.message {
+	width: 63%;
+	float: right;
+	height: auto;
+}
+#clientTimer {
+	display: inline-block;
+	vertical-align: middle;
+	margin-left: 5px;
+}
+.text-center {
+	text-align: center;
+    padding: 15px 0 5px;
+    font-size: 20px;
+    font-weight: bold;
+    position: fixed;
+    width: 100%;
+}
+.knob.second{
+	height: 15px !important;
+	margin-top: 8px !important;
+}

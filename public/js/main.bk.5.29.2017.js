@@ -1,5 +1,5 @@
-$(function($) {
-  //configs
+$(function() {
+
   var FADE_TIME = 150; // ms
   var TYPING_TIMER_LENGTH = 400; // ms
   var COLORS = [
@@ -7,15 +7,9 @@ $(function($) {
     '#58dc00', '#287b00', '#a8f07a', '#4ae8c4',
     '#3b88eb', '#3824aa', '#a700ff', '#d300e7'
   ];
-  //KNOB CONFIGURATIONS
-  var BIDDER_TIMER_LIMIT = 10; // s
-  var DIAL_HEIGHT = 30;
-  var DIAL_WIDTH  = 30;
-  var DIAL_THICKNESS  = .1;
 
   // Initialize variables
   var $window = $(window);
-  var setTimeOut;
   var $usernameInput = $('.usernameInput'); // Input for username
   var $messages = $('.messages'); // Messages area
   var $rightLogMsg = $('.right .logs'); //User Logs
@@ -26,7 +20,6 @@ $(function($) {
   var $chatPage = $('.chat.page'); // The chatroom page
 
   var $btns = $('.bid-btns'); // bidding buttons @ footer
-  var $clientTimerHtml = '<div id="clientTimer"><input value="0" id="time" class="knob second" data-min="0" data-max="'+BIDDER_TIMER_LIMIT+'" data-fgColor="red" data-displayInput=false data-readOnly=true data-width="'+DIAL_WIDTH+'" data-height="'+DIAL_HEIGHT+'" data-thickness="'+DIAL_THICKNESS+'"></div>';
 
   // Prompt for setting a username
   var username;
@@ -78,7 +71,6 @@ $(function($) {
 
     //var message =  parseInt(c) + parseInt($('.show:last-child').find('.messageBody').text()) + ' ['+now+']';
     var message =  init_bid_condition + bid_amt_condition + ' ['+now+']';
-    var bid_sold_at = init_bid_condition + bid_amt_condition;
     //remove initial bid amt from data on first bid
     $('.init-bid').data('init-bid',0);
     // Prevent markup from being injected into the message
@@ -88,37 +80,11 @@ $(function($) {
       $inputMessage.val('');
       addBids({
         username: username,
-        message: message,
-        bid_sold_at : bid_sold_at
+        message: message
       });
-
       // tell server to execute 'new message' and send along one parameter
-      socket.emit('new message', {message,bid_sold_at});
+      socket.emit('new message', message);
     }
-  }
-
-  //AADED
-  function countdown($el,data) {
-
-      var seconds = BIDDER_TIMER_LIMIT;
-      var username = data ? data.username : 'error';
-      var bidAmt = data ? data.bid_sold_at : 'error';
-      function tick() {
-         var $s = $('#time');
-          seconds--;
-          $s.val(seconds).trigger("change");
-          if( seconds > 0 ) {
-              setTimeOut = setTimeout(function(){
-                tick();
-              }, 1000);
-          } else {
-            $('#container').html('<p class="text-center">Sold To '+username+' @ ' +bidAmt+ '</p>');
-            $('.all-bid-logs').find('li:first-child').append('[ SOLD ]');
-            $('.all-bid-logs').find('li:first-child').css({'background-color':'yellow', 'font-weight': 'bold'});
-            $('.bid-btns').prop('disabled',true);
-          }
-      }
-      tick();
   }
 
   // Log a message
@@ -150,7 +116,6 @@ $(function($) {
       .append($usernameDiv, $messageBodyDiv);
 
     addBiddingElements($messageDiv, options,data);
-    addBidTimer($messageDiv,data);
   }
 
   // Adds the visual chat bidding message
@@ -301,6 +266,7 @@ $(function($) {
   }
 
   function strikeInitialBid (bid_value){
+   console.log(bid_value);
    $('p span:contains(99)').next().prop('disabled',true);
    $('p span:contains(99)').css("text-decoration", "line-through");
   }
@@ -311,67 +277,6 @@ $(function($) {
     $('p span:contains(99)').css("text-decoration", "line-through");
     // tell server to execute 'new message' and send along one parameter
     socket.emit('strike initial bid price', bid_value);
-  }
-
-  function addBidTimer($el,data){
-    //knob related
-    clearTimeout(setTimeOut);
-    $('.show:last-child').prev().find('#clientTimer').remove();
-    $('.show:last-child').find('.messageBody').append($clientTimerHtml);
-    knob();
-    countdown($el,data);
-  }
-
-  function knob() {
-      $(".knob").knob({
-      'displayInput': true,
-      'stopper':0,
-      'min':0,
-      change : function (value) {
-          //console.log("change : " + value);
-      },
-
-      release : function (value) {
-          //console.log(this.$.attr('value'));
-          //console.log("release : " + value);
-      },
-  
-      draw : function () {
-
-          this.i.css('font-size', '15px')
-          // "tron" case
-          if(this.$.data('skin') == 'tron') {
-              this.cursorExt = 0.3;
-
-              var a = this.arc(this.cv)  // Arc
-                  , pa                   // Previous arc
-                  , r = 1;
-
-              this.g.lineWidth = this.lineWidth;
-
-              if (this.o.displayPrevious) {
-                  pa = this.arc(this.v);
-                  this.g.beginPath();
-                  this.g.strokeStyle = this.pColor;
-                  this.g.arc(this.xy, this.xy, this.radius - this.lineWidth, pa.s, pa.e, pa.d);
-                  this.g.stroke();
-              }
-
-              this.g.beginPath();
-              this.g.strokeStyle = r ? this.o.fgColor : this.fgColor ;
-              this.g.arc(this.xy, this.xy, this.radius - this.lineWidth, a.s, a.e, a.d);
-              this.g.stroke();
-
-              this.g.lineWidth = 2;
-              this.g.beginPath();
-              this.g.strokeStyle = this.o.fgColor;
-              this.g.arc( this.xy, this.xy, this.radius - this.lineWidth + 1 + this.lineWidth * 2 / 3, 0, 2 * Math.PI, false);
-              this.g.stroke();
-
-              return false;
-          }
-      }
-  });
   }
 
   // Keyboard events
@@ -465,7 +370,7 @@ $(function($) {
   socket.on('login', function (data) {
     connected = true;
     // Display the welcome message
-    var message = "Welcome to Live Auction – ";
+    var message = "Welcome to Live Auction Demo MI – ";
     log(message, {
       prepend: true
     }); 
